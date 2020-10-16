@@ -1,5 +1,6 @@
 package com.codepath.jmott.parstagram;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,14 +10,18 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
 import com.parse.FindCallback;
@@ -36,14 +41,42 @@ public class MainActivity extends AppCompatActivity {
     public String photoFileName = "photo.jpg";
     private File photoFile;
     private EditText etDescription;
-    private Button btnCaptureImage;
+    private ImageButton btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.menuLogout) {
+            ParseUser.logOut();
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            finish();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+
+        }
+        return true;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Create Post");
+
 
         etDescription = findViewById(R.id.etDescription);
         btnCaptureImage = findViewById(R.id.btnCaptureImage);

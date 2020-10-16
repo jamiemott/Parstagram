@@ -2,16 +2,16 @@
 
 **Parstagram** is a photo sharing app similar to Instagram but using Parse as its backend.
 
-Time spent: **2** hours spent in total
+Time spent: **4** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
 - [X] User can sign up to create a new account using Parse authentication.
-- [ ] User can log in and log out of his or her account.
+- [X] User can log in and log out of his or her account.
 - [X] The current signed in user is persisted across app restarts.
-- [ ] User can take a photo, add a caption, and post it to "Instagram".
+- [X] User can take a photo, add a caption, and post it to "Instagram".
 
 The following **optional** features are implemented:
 
