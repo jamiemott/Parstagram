@@ -53,6 +53,10 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick signup button");
                 final String username = etUserName.getText().toString();
                 final String password = etPassword.getText().toString();
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Username and password are required.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 ParseUser user = new ParseUser();
                 // Set core properties
                 user.setUsername(username);
