@@ -56,12 +56,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.menuLogout) {
-            ParseUser.logOut();
-            ParseUser currentUser = ParseUser.getCurrentUser();
-            finish();
-            Intent i = new Intent(this, LoginActivity.class);
+            Intent i = new Intent(this, LogOutActivity.class);
             startActivity(i);
-
         }
         return true;
     }
