@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUserName;
     private EditText etPassword;
     private Button btnLogin;
+    private Button btnSignup;
 
 
     @Override
@@ -40,6 +43,34 @@ public class LoginActivity extends AppCompatActivity {
                 String username = etUserName.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
+            }
+        });
+
+        btnSignup = findViewById(R.id.btnSignup);
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick signup button");
+                final String username = etUserName.getText().toString();
+                final String password = etPassword.getText().toString();
+                ParseUser user = new ParseUser();
+                // Set core properties
+                user.setUsername(username);
+                user.setPassword(password);
+                // Invoke signUpInBackground
+                user.signUpInBackground(new SignUpCallback() {
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            loginUser(username, password);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Sign up failed. Please try again.", Toast.LENGTH_SHORT).show();
+                            etUserName.setText("");
+                            etPassword.setText("");
+                            return;
+                        }
+
+                    }
+                });
             }
         });
     }
