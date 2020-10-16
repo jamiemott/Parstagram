@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
+    private ProgressBar pb;
 
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
