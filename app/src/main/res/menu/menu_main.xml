@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menuLogout"
-        android:icon="@drawable/ic_profile"
-        android:title="Profile"
+        android:icon="@drawable/ic_outline_exit_to_app_24"
+        android:title="Exit"
         app:showAsAction="ifRoom|withText"></item>
 </menu>
