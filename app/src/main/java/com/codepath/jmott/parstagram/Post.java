@@ -21,6 +21,13 @@ public class Post extends ParseObject {
         put(KEY_DESCRIPTION, description);
     }
 
+    public String getTimeStamp() {
+        return getString(KEY_CREATED_KEY);
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        put(KEY_DESCRIPTION, timeStamp); }
+
     public ParseFile getImage() {
         return getParseFile(KEY_IMAGE);
     }
