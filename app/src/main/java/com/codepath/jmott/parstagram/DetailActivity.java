@@ -17,6 +17,11 @@ import com.codepath.jmott.parstagram.Post;
 import com.codepath.jmott.parstagram.R;
 import com.parse.ParseFile;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DetailActivity extends AppCompatActivity {
 
     ImageView ivPostImage;
@@ -38,10 +43,17 @@ public class DetailActivity extends AppCompatActivity {
         tvTimeStamp = findViewById(R.id.tvTimeStamp);
 
         Post post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
+        getSupportActionBar().setTitle(post.getUser().getUsername() + "'s Post");
         tvDescription.setText(post.getDescription());
+        DateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy hh:mm:ss a");
+        Date date = post.getCreatedAt();
+        String dateString = dateFormat.format(date);
+        tvTimeStamp.setText(dateString);
         ParseFile image = post.getImage();
         if (image != null) {
-            Glide.with(getApplicationContext()).load(post.getImage().getUrl()).into(ivPostImage);
+            Glide.with(getApplicationContext()).load(image.getUrl()).into(ivPostImage);
+        } else {
+            Glide.with(getApplicationContext()).load(image).placeholder(R.drawable.ic_placeholder).into(ivPostImage);
         }
     }
 

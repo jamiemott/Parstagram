@@ -63,7 +63,7 @@ public class PostsFragment extends Fragment {
         });
         // Configure the refreshing colors
 
-            rvPosts = view.findViewById(R.id.rvPosts);
+        rvPosts = view.findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(getContext(), allPosts);
 
@@ -87,6 +87,7 @@ public class PostsFragment extends Fragment {
                 for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + " Username: " + post.getUser().getUsername());
                 }
+                allPosts.clear();
                 allPosts.addAll(posts);
                 swipeContainer.setRefreshing(false);
                 adapter.notifyDataSetChanged();

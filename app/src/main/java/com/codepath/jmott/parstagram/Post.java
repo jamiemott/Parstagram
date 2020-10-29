@@ -5,6 +5,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.util.Date;
+
 @ParseClassName("Post")
 public class Post extends ParseObject {
 
@@ -20,13 +22,6 @@ public class Post extends ParseObject {
     public void setDescription(String description) {
         put(KEY_DESCRIPTION, description);
     }
-
-    public String getTimeStamp() {
-        return getString(KEY_CREATED_KEY);
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        put(KEY_DESCRIPTION, timeStamp); }
 
     public ParseFile getImage() {
         return getParseFile(KEY_IMAGE);
